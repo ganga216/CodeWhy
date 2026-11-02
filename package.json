@@ -1,0 +1,10 @@
+{
+  "name": "why-the-code-is-like-this",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Evidence-first engineering decision archaeology prototype for hackathons",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": { "node": ">=18" }
+}

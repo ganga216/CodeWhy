@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0a0e16" />
+  <meta name="description" content="Evidence-first engineering decision archaeology — discover why code exists." />
+  <title>Why The Code Is Like This — CodeWhy</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="CodeWhy home">
+        <span class="brand-mark"><svg viewBox="0 0 36 36" aria-hidden="true"><path d="M18 5.5 29 12v12L18 30.5 7 24V12Z" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="18" cy="18" r="4" fill="currentColor"/><path d="M18 5.5v8.2M29 12l-7.1 4.1M29 24l-7-4M18 30.5v-8.2M7 24l7.1-4.1M7 12l7.1 4.1" stroke="currentColor" stroke-width="1.4"/></svg></span>
+        <span class="brand-copy"><strong>codewhy<span>®</span></strong><small>ENGINEERING MEMORY</small></span>
+      </a>
+
+      <div class="sidebar-label">WORKSPACE</div>
+      <button class="repo-switcher" id="sidebarRepoBtn" type="button">
+        <span class="repo-avatar" id="repoAvatar">A</span>
+        <span class="repo-switcher-text"><strong id="sidebarRepoName">payments-platform</strong><small id="sidebarRepoOwner">acme / sample workspace</small></span>
+        <span class="chevrons">⌄</span>
+      </button>
+
+      <div class="sidebar-label nav-label">EXPLORE</div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-item active" data-view="ask" type="button"><span class="nav-icon">⌕</span><span>Ask why</span><kbd>Q</kbd></button>
+        <button class="nav-item" data-view="graph" type="button"><span class="nav-icon graph-icon">⌘</span><span>Decision graph</span><span class="nav-dot"></span></button>
+        <button class="nav-item" data-view="timeline" type="button"><span class="nav-icon">◷</span><span>Decision timeline</span></button>
+        <button class="nav-item" data-view="people" type="button"><span class="nav-icon">♧</span><span>People & owners</span></button>
+        <button class="nav-item" data-view="repository" type="button"><span class="nav-icon">⌘</span><span>Repository</span></button>
+      </nav>
+
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-label">RECENT QUESTIONS</div>
+      <div class="recent-list" id="recentList">
+        <button type="button" data-question="Why is the retry limit set to three?">Why is retry limit 3?</button>
+        <button type="button" data-question="Why was the auth migration deferred?">Why defer auth migration?</button>
+        <button type="button" data-question="What replaced the old cache behavior?">What replaced TTL-only cache?</button>
+      </div>
+      <div class="sidebar-spacer"></div>
+      <div class="sidebar-bottom">
+        <div class="build-status"><span class="pulse-dot"></span><span><strong>Prototype mode</strong><small id="sidebarStatus">Illustrative sample data</small></span></div>
+        <button class="sidebar-help" id="aboutBtn" type="button"><span>ⓘ</span> About this prototype <span class="arrow">↗</span></button>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="breadcrumbs"><span>WORKSPACE</span><span class="crumb-slash">/</span><strong id="breadcrumbRepo">PAYMENTS-PLATFORM</strong></div>
+        <div class="topbar-actions">
+          <div class="live-status"><span class="pulse-dot"></span><span id="indexStatus">Graph indexed</span></div>
+          <button class="icon-button" id="shortcutsBtn" title="Keyboard shortcuts" aria-label="Keyboard shortcuts" type="button">⌘</button>
+          <button class="connect-button" id="connectRepoBtn" type="button"><span>＋</span> Connect repository</button>
+          <div class="avatar" title="Prototype workspace">G</div>
+        </div>
+      </header>
+
+      <section class="page-intro">
+        <div class="intro-copy">
+          <div class="eyebrow"><span class="eyebrow-spark">✳</span> APPLIED AI <span class="eyebrow-line"></span> DECISION ARCHAEOLOGY</div>
+          <h1 id="pageTitle">Understand <em>why</em> the code is like this.</h1>
+          <p id="pageSubtitle">The reasoning behind your codebase, reconstructed from the history that shaped it.</p>
+        </div>
+        <div class="intro-meta">
+          <div class="repo-state-chip"><span class="state-dot"></span><span id="repoModeChip">DEMO GRAPH</span></div>
+          <div class="last-indexed">LAST INDEXED <strong id="lastIndexed">Just now</strong></div>
+        </div>
+      </section>
+
+      <section class="ask-section" id="askSection">
+        <div class="ask-leading"><span class="ask-spark">✳</span></div>
+        <form id="askForm" class="ask-form">
+          <label class="sr-only" for="questionInput">Ask a question about the codebase</label>
+          <input id="questionInput" autocomplete="off" placeholder="Ask why something exists, changed, or stayed…" value="Why is the retry limit set to three?" />
+          <div class="ask-form-right"><span class="ask-hint">Evidence, not guesses</span><button class="ask-submit" id="askSubmit" type="submit">Ask CodeWhy <span>↗</span></button></div>
+        </form>
+        <div class="suggestion-row"><span class="suggestion-label">TRY ASKING</span>
+          <button class="suggestion-chip" data-question="Why is the retry limit set to three?" type="button">Why is retry limit 3?</button>
+          <button class="suggestion-chip" data-question="Why was the auth migration deferred?" type="button">Why defer auth migration?</button>
+          <button class="suggestion-chip" data-question="What replaced the old cache behavior?" type="button">What replaced the old cache?</button>
+          <button class="suggestion-chip muted-chip" data-question="Why does ENABLE_LEGACY_LEDGER stay on?" type="button">Try an unanswerable question ↗</button>
+        </div>
+      </section>
+
+      <section class="metric-strip" aria-label="Repository graph summary">
+        <div class="metric-card"><span class="metric-label">DECISION NODES</span><div><strong id="metricDecisions">06</strong><span class="metric-icon violet">◇</span></div><small>Reasoning extracted from history</small></div>
+        <div class="metric-card"><span class="metric-label">EVIDENCE LINKS</span><div><strong id="metricEdges">21</strong><span class="metric-icon cyan">⌁</span></div><small>Discussions ↔ code ↔ decisions</small></div>
+        <div class="metric-card"><span class="metric-label">SUPERSEDED</span><div><strong id="metricSuperseded">02</strong><span class="metric-icon amber">↻</span></div><small>Old decisions kept in context</small></div>
+        <div class="metric-card"><span class="metric-label">ANSWER POLICY</span><div><strong class="policy-text">Evidence first</strong><span class="metric-icon green">✓</span></div><small>Low evidence? We say so.</small></div>
+      </section>
+
+      <section class="workspace-grid">
+        <div class="visual-column">
+          <section class="panel graph-panel" id="primaryPanel">
+            <div class="panel-heading">
+              <div><div class="panel-kicker" id="primaryKicker">RELATIONSHIP MAP</div><h2 id="primaryTitle">Decision graph <span class="count-pill" id="graphCount">8 nodes</span></h2><p id="primaryDescription">Follow the reasoning from decision → discussion → code.</p></div>
+              <div class="panel-head-actions"><button class="text-button" id="focusGraphBtn" type="button">Focus graph <span>↗</span></button><button class="square-button" id="expandGraphBtn" aria-label="Expand graph" title="Expand graph" type="button">⤢</button></div>
+            </div>
+            <div id="primaryBody" class="primary-body">
+              <div class="graph-legend"><span><i class="legend-dot decision-dot"></i>Decision</span><span><i class="legend-dot source-dot"></i>Source</span><span><i class="legend-dot code-dot"></i>Code entity</span><span><i class="legend-dot person-dot"></i>Person</span><div class="legend-spacer"></div><span class="graph-live"><i></i> RELATIONSHIPS</span></div>
+              <div id="graphCanvasWrap" class="graph-canvas-wrap"><div class="graph-grid-bg"></div><svg id="graphSvg" class="graph-svg" viewBox="0 0 820 470" role="img" aria-label="Interactive decision evidence graph"></svg><div class="graph-hint"><span>↖</span> Select any node to inspect its evidence</div><div id="graphLoading" class="graph-loading hidden"><span class="loader-ring"></span> Rebuilding evidence graph…</div></div>
+              <div class="graph-footer"><span><i class="mini-circle"></i><strong id="graphFocusLabel">Retry policy decision</strong> <span id="graphFocusHint">is connected to 5 evidence sources</span></span><button type="button" id="showAllNodesBtn">Show full graph <span>→</span></button></div>
+            </div>
+          </section>
+
+          <section class="panel lower-panel" id="secondaryPanel">
+            <div class="panel-heading compact-heading"><div><div class="panel-kicker">RECENT HISTORY</div><h2>Decision activity <span class="subtle-heading">· last 12 months</span></h2></div><button class="text-button" type="button" data-go-view="timeline">View timeline <span>→</span></button></div>
+            <div class="activity-list" id="activityList"></div>
+          </section>
+        </div>
+
+        <aside class="answer-column">
+          <section class="panel answer-panel" id="answerPanel">
+            <div class="answer-topline"><span class="answer-bulb">✳</span><div><div class="panel-kicker">ANSWER WITH EVIDENCE</div><h2 id="answerPanelTitle">Here’s why.</h2></div><span class="answer-status" id="answerState">SUPPORTED</span></div>
+            <div id="answerBody" class="answer-body"><div class="answer-placeholder"><span class="loader-ring"></span><p>Following the evidence trail…</p></div></div>
+            <div class="answer-bottom"><span>Built from linked source records</span><span class="privacy-dot"></span></div>
+          </section>
+          <section class="panel evidence-quality-panel">
+            <div class="panel-heading compact-heading"><div><div class="panel-kicker">TRUST SIGNAL</div><h2>Why trust this answer?</h2></div><span class="shield-mark">⬡</span></div>
+            <div class="trust-rows" id="trustRows"><div class="trust-row"><span>Source traceability</span><div class="trust-track"><i style="width:92%"></i></div><b>92%</b></div><div class="trust-row"><span>Decision recency</span><div class="trust-track"><i style="width:88%"></i></div><b>88%</b></div><div class="trust-row"><span>Supersession check</span><div class="trust-track"><i style="width:100%"></i></div><b>Done</b></div></div>
+            <p class="trust-footnote"><span>ⓘ</span> Confidence reflects evidence coverage and linkage, not an independent guarantee of correctness.</p>
+          </section>
+        </aside>
+      </section>
+      <footer class="app-footer"><span>CODEWHY <span class="footer-sep">/</span> EVIDENCE-FIRST ENGINEERING MEMORY</span><span id="footerMode">Demo data is illustrative · connect a public repo for live indexing</span></footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop hidden" id="repoModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card repo-modal-card">
+      <button class="modal-close" id="closeRepoModal" aria-label="Close dialog" type="button">×</button>
+      <div class="modal-mark">↗</div><div class="modal-kicker">CONNECT A CODEBASE</div><h2 id="modalTitle">Bring the history into context.</h2><p class="modal-subtitle">Index a public GitHub repository to trace decisions through commits, issues, pull requests, comments, and design docs.</p>
+      <form id="repoForm"><label for="repoUrlInput">GitHub repository URL</label><div class="repo-url-input"><span>↗</span><input id="repoUrlInput" type="url" placeholder="https://github.com/fastapi/fastapi" value="https://github.com/fastapi/fastapi" required /></div><div class="modal-hint"><span>ⓘ</span> Public repositories only. No code is modified. GitHub API rate limits apply.</div><div class="ingest-steps" id="ingestSteps"><div class="ingest-step" data-step="1"><span>01</span><i></i> Fetch repository history</div><div class="ingest-step" data-step="2"><span>02</span><i></i> Link discussions to code</div><div class="ingest-step" data-step="3"><span>03</span><i></i> Detect decisions & supersession</div></div><div id="ingestError" class="ingest-error hidden"></div><button class="modal-primary" id="startIngestBtn" type="submit">Index repository <span>→</span></button>
+      </form>
+      <div class="modal-disclaimer">Prototype note: indexing and graph construction use GitHub's public API and transparent heuristics. Neo4j AuraDB and LLM-based GraphRAG are integration points, not connected in this build.</div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop hidden" id="infoModal" role="dialog" aria-modal="true" aria-labelledby="infoTitle"><div class="modal-card info-modal-card"><button class="modal-close" id="closeInfoModal" aria-label="Close dialog" type="button">×</button><div class="modal-kicker">ABOUT THIS BUILD</div><h2 id="infoTitle">A prototype for engineering memory.</h2><p>This interface demonstrates the product flow from the hackathon brief: ask a natural-language “why” question, inspect a decision graph, follow evidence to source records, see earlier decisions marked as superseded, and refuse to answer when the graph lacks enough support.</p><div class="info-grid"><div><b>Live today</b><span>Public GitHub ingestion, heuristic decision candidates, graph links, keyword-based evidence retrieval, source inspection.</span></div><div><b>Next integration</b><span>Neo4j AuraDB for persistent graph storage, an LLM extractor, and GraphRAG for richer retrieval and grounded response generation.</span></div></div><button class="modal-primary" id="closeInfoPrimary" type="button">Back to workspace <span>→</span></button></div></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js"></script>
+</body>
+</html>
